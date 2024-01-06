@@ -12,8 +12,19 @@ if($text == "/startbot"){
         [$telegram->buildKeyboardButton('Button 1'), $telegram->buildKeyboardButton('Button 2')],
     ];
 
+    $follows = [
+        [
+            'text_btn' => "👉 Bizning guruh 👈",
+            'link' => "https://t.me/+qF8ncJxhLLwxNWIy",
+            'chat_id' => -1002089884417,
+            'required' => true
+        ]
+    ];
+
     
 
-    $content = array('chat_id' => $chat_id, 'reply_markup' => $telegram->buildKeyBoard($option, $onetime = false, $resize = true), 'text' => "Salom botimizga hush kelibsiz!");
+    
+
+    $content = array('chat_id' => $chat_id, 'reply_markup' => $telegram->buildInlineKeyBoard($follows), 'text' => "Salom botimizga hush kelibsiz!");
     $telegram->sendMessage($content);
 }
