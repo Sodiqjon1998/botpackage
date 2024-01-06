@@ -12,8 +12,8 @@ if($text == "/startbot"){
         [$telegram->buildKeyboardButton('Button 1'), $telegram->buildKeyboardButton('Button 2')],
     ];
 
-    $telegram->buildKeyBoard($option);
+    
 
-    $content = array('chat_id' => $chat_id, 'text' => "Salom botimizga hush kelibsiz!");
+    $content = array('chat_id' => $chat_id, 'reply-_arkup' => $telegram->buildKeyBoard($option), 'text' => "Salom botimizga hush kelibsiz!");
     $telegram->sendMessage($content);
 }
