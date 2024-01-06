@@ -12,19 +12,27 @@ if($text == "/startbot"){
         [$telegram->buildKeyboardButton('Button 1'), $telegram->buildKeyboardButton('Button 2')],
     ];
 
-    $follows = [
-        [
-            'text_btn' => "👉 Bizning guruh 👈",
-            'link' => "https://t.me/+qF8ncJxhLLwxNWIy",
-            'chat_id' => -1002089884417,
-            'required' => true
-        ]
-    ];
+    $CITIES = ['Toshkent', 'Samarqand', 'Buxoro', 'Qarshi', 'Andijon', 'Nukus'];
 
-    
+    $options = getInlineKeyboardButtons($CITIES, 3);
+    $keyb = $telegram->buildInlineKeyBoard($options);
+    $content = ['chat_id' => $chatID, 'text' => 'Bosh menyu', 'reply_markup' => $keyb];
 
-    
-
-    $content = array('chat_id' => $chat_id, 'reply_markup' => $telegram->buildInlineKeyBoard($follows), 'text' => "Salom botimizga hush kelibsiz!");
     $telegram->sendMessage($content);
+    
+}
+
+
+function getInlineKeyboardButtons($buttons, $columnNum = 2) {
+    global $telegram;
+    $options = [];
+    for ($i = 0; $i < count($buttons);) {
+        $tempArray = [];
+        for ($j = 0; $j < $columnNum && $i < count($buttons); $j++) {
+            $tempArray[] = $telegram->buildInlineKeyboardButton($buttons[$i], "", $buttons[$i]);
+            $i++;
+        }
+        $options[] = $tempArray;
+    }
+    return $options;
 }
