@@ -9,34 +9,27 @@ $update = json_decode(file_get_contents("php://input"), TRUE);
 if (isset($update["message"])) {
     $chatId = $update["message"]["chat"]["id"];
     $messageText = $update["message"]["text"];
+    $userId = $update['message']['from']['id'];
 
-    // Guruhdagi yangi a'zolar
-    if (isset($update["message"]["new_chat_members"])) {
-        $newMembers = $update["message"]["new_chat_members"];
+    // Qo'ng'iroqni shakllantirish
+    $responseText = "Sizning so'rovingiz: $messageText";
 
-        foreach ($newMembers as $member) {
-            // Yangi a'zolarga xush kelibsiz xabarini yuborish
-            $responseText = "Assalomu alaykum, " . $member["first_name"] . "! Men sizning Telegram botingizman. Xush kelibsiz!";
-            sendMessage($chatId, $responseText, $token);
-        }
-    }
-
-    // Start buyrug'i kelganida xush kelibsiz xabarini yuborish
-    if ($messageText == "/start") {
-        $responseText = "Assalomu alaykum! Men sizning Telegram botingizman. Xush kelibsiz!";
-        sendMessage($chatId, $responseText, $token);
-    }
+    // Telegramga javob yuborish
+    sendMessage($chatId, $responseText, $token, $userId);
 }
 
 // Telegramga javob yuborish uchun funksiya
-function sendMessage($chatId, $message, $token) {
+function sendMessage($chatId, $message, $token, $userId) {
     $url = "https://api.telegram.org/bot$token/sendMessage";
     $params = [
         'chat_id' => $chatId,
-        'text' => $message,
+        'text' => $userId,
     ];
+
+    echo $userId;
 
     $url = $url . '?' . http_build_query($params);
     file_get_contents($url);
 }
+
 ?>
