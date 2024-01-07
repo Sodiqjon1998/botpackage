@@ -16,7 +16,7 @@ if (isset($update["message"]) && isset($update["message"]["text"])) {
         sendMessage($chatId, $responseText, $token);
 
         // Foydalanuvchini ma'lumotlar bazasiga qo'shish
-        // saveUserToDatabase($userId);
+        saveUserToDatabase($userId);
     }
 }
 
