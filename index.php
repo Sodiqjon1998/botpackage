@@ -11,7 +11,7 @@ if (isset($update["message"])) {
     $messageText = $update["message"]["text"];
     $userId = $update['message']['from']['id'];
 
-    if ($messageText == '/start') {
+    if ($messageText == '/startbot') {
         // Foydalanuvchiga salom berish
         $responseText = "Assalomu alaykum! Botimizga xush kelibsiz, $userId!";
         sendMessage($chatId, $responseText, $token, $userId);
