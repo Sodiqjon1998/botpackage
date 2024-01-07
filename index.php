@@ -10,8 +10,10 @@ $dbname = "yuksali9_edu"; // O'zgartiring
 $conn = mysqli_connect($servername, $username, $password);
 
 // Bağlanti tekshirish
-if ($conn) {
-    echo "Successfly";
+if (!$conn) {
+    echo "Xatolik";
 }
-
-echo "Xatolik";
+else{
+    
+    echo "Zo'r";
+}
