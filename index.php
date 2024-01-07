@@ -8,6 +8,8 @@ $chat_id = '-1002089884417'; // Foydalanuvchi chat_id
 // Webhookdan olingan ma'lumotlarni olish
 $update = json_decode(file_get_contents("php://input"), true);
 
+print_r($update);
+
 // Eng so'nggi yozilgan xabarlar
 foreach ($update['message']['text'] as $message) {
     $user_id = $message['from']['id'];
