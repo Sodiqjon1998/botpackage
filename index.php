@@ -25,13 +25,6 @@ $params = [
 ];
 
 $response = file_get_contents($telegramApiUrl . '?' . http_build_query($params));
-$responseDatas = json_decode($response, true);
-
-
-file_put_contents("log.json", json_encode($response));
-
-$update = json_decode(file_get_contents('log.json'));
 
 echo "<pre>";
-
-print_r($update);
+ print_r($response);
