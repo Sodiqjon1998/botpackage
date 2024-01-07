@@ -27,4 +27,4 @@ $params = [
 $response = file_get_contents($telegramApiUrl . '?' . http_build_query($params));
 $responseData = json_decode($response, true);
 
-echo $responseData;
+print_r($responseData);
