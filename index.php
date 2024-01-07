@@ -21,7 +21,8 @@ if (isset($update["message"]) && isset($update["message"]["text"])) {
 }
 
 // Telegramga javob yuborish uchun funksiya
-function sendMessage($chatId, $message, $token) {
+function sendMessage($chatId, $message, $token)
+{
     $url = "https://api.telegram.org/bot$token/sendMessage";
     $params = [
         'chat_id' => $chatId,
@@ -33,7 +34,8 @@ function sendMessage($chatId, $message, $token) {
 }
 
 // Foydalanuvchini ma'lumotlar bazasiga qo'shish uchun funksiya
-function saveUserToDatabase($userId) {
+function saveUserToDatabase($userId)
+{
     $servername = "localhost"; // O'zgartiring
     $username = "yuksali9_edu"; // O'zgartiring
     $password = "aS7X?uamuE]I"; // O'zgartiring
@@ -41,21 +43,21 @@ function saveUserToDatabase($userId) {
 
 
 
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
     // Check connection
-    if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "INSERT INTO user1 (id)
-    VALUES ($userId)";
+    $sql = "INSERT INTO MyGuests (id, firs_name)
+VALUES (,$userId 'Sodiqjon')";
 
-    if (mysqli_query($conn, $sql)) {
-    echo "New record created successfully";
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
     } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
-    mysqli_close($conn);
+    $conn->close();
 }
-?>
