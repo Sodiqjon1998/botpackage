@@ -39,24 +39,21 @@ function saveUserToDatabase($userId) {
     $password = "aS7X?uamuE]I"; // O'zgartiring
     $dbname = "yuksali9_edu"; // O'zgartiring
 
-    // MySQL bağlantısını yaratish
     $conn = mysqli_connect($servername, $username, $password, $dbname);
-
-    // Bağlanti tekshirish
-    if ($conn->connect_error) {
-        die("Xatolik: ");
+    // Check connection
+    if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
     }
 
-    // Foydalanuvchi ma'lumotlarini saqlash so'rovi
-    $sql = "INSERT INTO user1 (id, first_name) VALUES ($userId, 'Sodiqjon')";
+    $sql = "INSERT INTO user1 (id)
+    VALUES ($userId)";
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Foydalanuvchi ma'lumotlari saqlandi";
+    if (mysqli_query($conn, $sql)) {
+    echo "New record created successfully";
     } else {
-        echo "Xatolik: " . $conn->error;
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 
-    // MySQL bağlantisini yopish
-    $conn->close();
+    mysqli_close($conn);
 }
 ?>
