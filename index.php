@@ -1,38 +1,14 @@
 <?php
 
-include "Telegram.php";
+define("API_KEY", "6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc");
 
-$telegram = new Telegram("6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc");
+$chatId = "-1002089884417";
 
-$chat_id = $telegram->ChatID();
-$text = $telegram->Text();
-if($text == "/startbot"){
+$telegramApiUrl = "https://api.telegram.org/bot".API_KEY."/sendMessage";
 
-    $option = [
-        [$telegram->buildKeyboardButton('Button 1'), $telegram->buildKeyboardButton('Button 2')],
-    ];
+$params = [
+    'chat_id' => $chatId,
+    "text" => "Salom",
+];
 
-    $CITIES = ['Toshkent', 'Samarqand', 'Buxoro', 'Qarshi', 'Andijon', 'Nukus'];
-
-    $options = getInlineKeyboardButtons($CITIES, 3);
-    $keyb = $telegram->buildInlineKeyBoard($options);
-    $content = ['chat_id' => $chatID, 'text' => 'Bosh menyu', 'reply_markup' => $keyb];
-
-    $telegram->sendMessage($content);
-    
-}
-
-
-function getInlineKeyboardButtons($buttons, $columnNum = 2) {
-    global $telegram;
-    $options = [];
-    for ($i = 0; $i < count($buttons);) {
-        $tempArray = [];
-        for ($j = 0; $j < $columnNum && $i < count($buttons); $j++) {
-            $tempArray[] = $telegram->buildInlineKeyboardButton($buttons[$i], "", $buttons[$i]);
-            $i++;
-        }
-        $options[] = $tempArray;
-    }
-    return $options;
-}
+$response = file_get_contents($telegramApiUrl . '?' . http_build_query($params));
