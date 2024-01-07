@@ -47,5 +47,7 @@
         echo "Successfly";
     }
 
+    echo "Xatolik";
+
 // }
 ?>
