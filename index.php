@@ -1,51 +1,35 @@
 <?php
-define('BOT_TOKEN', '6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc');
-define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
+// Telegram botning tokeni
+$token = "6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc";
 
-function sendMessage($chatId, $text, $replyMarkup) {
-    $url = API_URL . 'sendMessage';
-    $data = [
+// Telegram dan kelgan so'rovni olish
+$update = json_decode(file_get_contents("php://input"), TRUE);
+
+// Kelgan so'rovni tekshirish
+if (isset($update["message"])) {
+    $chatId = $update["message"]["chat"]["id"];
+    $messageText = $update["message"]["text"];
+    $userId = $update['message']['from']['id'];
+
+    // Qo'ng'iroqni shakllantirish
+    $responseText = "Sizning so'rovingiz: $messageText";
+
+    // Telegramga javob yuborish
+    sendMessage($chatId, $responseText, $token, $userId);
+}
+
+// Telegramga javob yuborish uchun funksiya
+function sendMessage($chatId, $message, $token, $userId) {
+    $url = "https://api.telegram.org/bot$token/sendMessage";
+    $params = [
         'chat_id' => $chatId,
-        'text' => $text,
-        'reply_markup' => $replyMarkup,
+        'text' => $userId,
     ];
 
-    $options = [
-        'http' => [
-            'method'  => 'POST',
-            'header'  => 'Content-type: application/x-www-form-urlencoded',
-            'content' => http_build_query($data),
-        ],
-    ];
+    echo $userId;
 
-    $context  = stream_context_create($options);
-    $result = file_get_contents($url, false, $context);
-
-    if ($result === FALSE) {
-        // Handle error
-        return false;
-    }
-
-    return $result;
+    $url = $url . '?' . http_build_query($params);
+    file_get_contents($url);
 }
 
-$chatId = 'Foydalanuvchi_Chat_IDsi'; // Foydalanuvchi chat ID'si o'zgartiring
-$text = 'Ruxsat so\'rovi';
-$inlineKeyboard = [
-    'inline_keyboard' => [
-        [
-            ['text' => 'Ruxsat berish', 'callback_data' => 'allow'],
-            ['text' => 'Ruxsat bermaslik', 'callback_data' => 'deny'],
-        ],
-    ],
-];
-
-$replyMarkup = json_encode($inlineKeyboard);
-$result = sendMessage($chatId, $text, $replyMarkup);
-
-if ($result !== false) {
-    echo "Xabar yuborildi!";
-} else {
-    echo "Xatolik yuz berdi";
-}
 ?>
