@@ -15,3 +15,5 @@ $servername = "localhost"; // O'zgartiring
     }
 
     echo "Xatolik";
+
+    
