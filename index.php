@@ -11,8 +11,11 @@ if (isset($update["message"])) {
     $messageText = $update["message"]["text"];
     $userId = $update['message']['from']['id'];
 
-    // Qo'ng'iroqni shakllantirish
-    $responseText = "Sizning so'rovingiz: $messageText";
+    if ($messageText == '/start') {
+        // Foydalanuvchiga salom berish
+        $responseText = "Assalomu alaykum! Botimizga xush kelibsiz, $userId!";
+        sendMessage($chatId, $responseText, $token, $userId);
+    }
 
     // Telegramga javob yuborish
     sendMessage($chatId, $responseText, $token, $userId);
