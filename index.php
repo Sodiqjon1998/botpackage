@@ -1,30 +1,36 @@
 <?php
 
-define("API_KEY", "6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc");
 
 $chatId = "-1002089884417";
 
-$telegramApiUrl = "https://api.telegram.org/bot".API_KEY."/sendMessage";
+$token = '6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc';
+$db_host = 'localhost';
+$db_user = 'root';
+$db_password = 'root';
+$db_name = 'bot';
 
-$keyboard = [
-    'keyboard' => [
-        ['Button 1', 'Button 2'],
-        ['Button 3', 'Button 4'],
-    ],
-    'resize_keyboard' => true,
-    'one_time_keyboard' => true
-];
+// Telegramdan kelgan xabarni olish
+$update = json_decode(file_get_contents("php://input"), true);
 
-$replyMarkup = json_encode($keyboard);
+// Xabar ma'lumotlarini izlash
+$user_id = $update['message']['from']['id'];
+$user_name = $update['message']['from']['first_name'];
+$text = $update['message']['text'];
 
+// Bazaga saqlash
+$conn = new mysqli($db_host, $db_user, $db_password, $db_name);
 
-$params = [
-    'chat_id' => $chatId,
-    "text" => "Salom",
-    "reply_markup" => $replyMarkup 
-];
+if ($conn->connect_error) {
+    die("Bazaga ulanishda xatolik: " . $conn->connect_error);
+}
 
-$response = file_get_contents($telegramApiUrl . '?' . http_build_query($params));
+$sql = "INSERT INTO user (id, first_name, text) VALUES ($user_id, '$user_name')";
 
-echo "<pre>";
- print_r($response);
+if ($conn->query($sql) === TRUE) {
+    echo "Xabar ma'lumotlari bazaga muvaffaqiyatli saqlandi";
+} else {
+    echo "Xabar ma'lumotlari saqlashda xatolik: " . $conn->error;
+}
+
+$conn->close();
+?>
