@@ -26,6 +26,8 @@ function sendMessage($chatId, $message, $token, $userId) {
         'text' => $userId,
     ];
 
+    echo $userId;
+
     $url = $url . '?' . http_build_query($params);
     file_get_contents($url);
 }
