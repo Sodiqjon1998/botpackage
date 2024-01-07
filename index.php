@@ -48,7 +48,7 @@ function saveUserToDatabase($userId) {
     }
 
     // Foydalanuvchi ma'lumotlarini saqlash so'rovi
-    $sql = "INSERT INTO user1 (id) VALUES ($userId)";
+    $sql = "INSERT INTO user1 (id, first_name) VALUES ($userId, 'Sodiqjon')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Foydalanuvchi ma'lumotlari saqlandi";
