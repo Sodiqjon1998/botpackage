@@ -16,7 +16,7 @@ if (isset($update["message"]) && isset($update["message"]["text"])) {
         sendMessage($chatId, $responseText, $token);
 
         // Foydalanuvchini ma'lumotlar bazasiga qo'shish
-        saveUserToDatabase($userId);
+        // saveUserToDatabase($userId);
     }
 }
 
@@ -38,6 +38,8 @@ function saveUserToDatabase($userId) {
     $username = "yuksali9_edu"; // O'zgartiring
     $password = "aS7X?uamuE]I"; // O'zgartiring
     $dbname = "yuksali9_edu"; // O'zgartiring
+
+
 
     $conn = mysqli_connect($servername, $username, $password, $dbname);
     // Check connection
