@@ -9,20 +9,21 @@ $update = json_decode(file_get_contents("php://input"), TRUE);
 if (isset($update["message"])) {
     $chatId = $update["message"]["chat"]["id"];
     $messageText = $update["message"]["text"];
+    $userId = $update['message']['from']['id'];
 
     // Qo'ng'iroqni shakllantirish
     $responseText = "Sizning so'rovingiz: $messageText";
 
     // Telegramga javob yuborish
-    sendMessage($chatId, $responseText, $token);
+    sendMessage($chatId, $responseText, $token, $userId);
 }
 
 // Telegramga javob yuborish uchun funksiya
-function sendMessage($chatId, $message, $token) {
+function sendMessage($chatId, $message, $token, $userId) {
     $url = "https://api.telegram.org/bot$token/sendMessage";
     $params = [
         'chat_id' => $chatId,
-        'text' => $chatId,
+        'text' => $userId,
     ];
 
     $url = $url . '?' . http_build_query($params);
