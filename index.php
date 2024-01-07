@@ -52,7 +52,7 @@ function saveUserToDatabase($userId)
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "INSERT INTO MyGuests (id, firs_name)
+    $sql = "INSERT INTO user1 (id, firs_name)
 VALUES (,$userId 'Sodiqjon')";
 
     if ($conn->query($sql) === TRUE) {
