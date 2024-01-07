@@ -2,8 +2,8 @@
 
 
 $servername = "localhost"; // O'zgartiring
-$username = "yuksali9_med"; // O'zgartiring
-$password = "d9e[I2J0l=Pw"; // O'zgartiring
+$username = "yuksali9_edu"; // O'zgartiring
+$password = "aS7X?uamuE]I"; // O'zgartiring
 $dbname = "yuksali9_edu"; // O'zgartiring
 
 // MySQL bağlantısını yaratish
