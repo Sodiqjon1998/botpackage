@@ -26,7 +26,7 @@ function sendMessage($chatId, $message, $token, $userId) {
     $url = "https://api.telegram.org/bot$token/sendMessage";
     $params = [
         'chat_id' => $chatId,
-        'text' => $userId,
+        'text' => $message,
     ];
 
     echo $userId;
