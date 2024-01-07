@@ -1,46 +1,51 @@
-
-
-
 <?php
-// Token va guruh ID sini o'zingizning botingiz ma'lumotlari bilan almashtiring
-$botToken = "6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc";
-$chatId = -1002089884417; // Guruh ID
+define('BOT_TOKEN', '6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc');
+define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
 
-// Telegramdan kelgan so'rovlar ma'lumotlari
-$update = json_decode(file_get_contents("php://input"), TRUE);
-
-// A'zolar ro'yxati
-$members = $update["message"]["new_chat_members"];
-
-// A'zolikni tekshirish va xabar yuborish
-foreach ($members as $member) {
-    $user_id = $member["id"];
-    $user_name = $member["first_name"];
-
-    // A'zolikni tekshirish
-    $is_member = isMember($botToken, $chatId, $user_id);
-
-    // Xabarni yuborish
-    if (!$is_member) {
-        sendMessage($botToken, $chatId, "Assalomu alaykum, $user_name! Xush kelibsiz guruhga!");
-    }
-}
-
-// A'zolikni tekshirish funksiyasi
-function isMember($token, $chat_id, $user_id) {
-    $url = "https://api.telegram.org/bot$token/getChatMember?chat_id=$chat_id&user_id=$user_id";
-    $result = json_decode(file_get_contents($url), TRUE);
-    return ($result["ok"] && $result["result"]["status"] == "member");
-}
-
-// Xabar yuborish funksiyasi
-function sendMessage($token, $chat_id, $text) {
-    $url = "https://api.telegram.org/bot$token/sendMessage";
-    $params = [
-        "chat_id" => $chat_id,
-        "text" => $text,
+function sendMessage($chatId, $text, $replyMarkup) {
+    $url = API_URL . 'sendMessage';
+    $data = [
+        'chat_id' => $chatId,
+        'text' => $text,
+        'reply_markup' => $replyMarkup,
     ];
-    file_get_contents($url . '?' . http_build_query($params));
+
+    $options = [
+        'http' => [
+            'method'  => 'POST',
+            'header'  => 'Content-type: application/x-www-form-urlencoded',
+            'content' => http_build_query($data),
+        ],
+    ];
+
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    if ($result === FALSE) {
+        // Handle error
+        return false;
+    }
+
+    return $result;
+}
+
+$chatId = 'Foydalanuvchi_Chat_IDsi'; // Foydalanuvchi chat ID'si o'zgartiring
+$text = 'Ruxsat so\'rovi';
+$inlineKeyboard = [
+    'inline_keyboard' => [
+        [
+            ['text' => 'Ruxsat berish', 'callback_data' => 'allow'],
+            ['text' => 'Ruxsat bermaslik', 'callback_data' => 'deny'],
+        ],
+    ],
+];
+
+$replyMarkup = json_encode($inlineKeyboard);
+$result = sendMessage($chatId, $text, $replyMarkup);
+
+if ($result !== false) {
+    echo "Xabar yuborildi!";
+} else {
+    echo "Xatolik yuz berdi";
 }
 ?>
-
