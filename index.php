@@ -1,25 +1,30 @@
 <?php
 
+define("API_KEY", "6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc");
+
+$chatId = "-1002089884417";
+
+$telegramApiUrl = "https://api.telegram.org/bot".API_KEY."/sendMessage";
+
+$keyboard = [
+    'keyboard' => [
+        ['Button 1', 'Button 2'],
+        ['Button 3', 'Button 4'],
+    ],
+    'resize_keyboard' => true,
+    'one_time_keyboard' => true
+];
+
+$replyMarkup = json_encode($keyboard);
 
 
-$token = '6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc';
-$chat_id = '-1002089884417'; // Foydalanuvchi chat_id
+$params = [
+    'chat_id' => $chatId,
+    "text" => "Salom",
+    "reply_markup" => $replyMarkup 
+];
 
-// Webhookdan olingan ma'lumotlarni olish
-$update = json_decode(file_get_contents("php://input"), true);
+$response = file_get_contents($telegramApiUrl . '?' . http_build_query($params));
 
-print_r($update);
-
-// Eng so'nggi yozilgan xabarlar
-foreach ($update['message']['text'] as $message) {
-    $user_id = $message['from']['id'];
-    $user_name = $message['from']['first_name'];
-    $text = $message['text'];
-
-    echo "User ID: $user_id\n";
-    echo "User Name: $user_name\n";
-    echo "Text: $text\n";
-    echo "-------------------------\n";
-}
-?>
-
+echo "<pre>";
+ print_r($response['result']['message']);
