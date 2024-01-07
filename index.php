@@ -10,7 +10,7 @@ if (isset($update["message"]) && isset($update["message"]["text"])) {
     $userId = $update["message"]["from"]["id"];
 
     // Start komandasini tekshirish
-    if ($messageText == '/start') {
+    if ($messageText == '/startbot') {
         // Foydalanuvchiga salom berish
         $responseText = "Assalomu alaykum! Botimizga xush kelibsiz, $userId!";
         sendMessage($chatId, $responseText, $token);
