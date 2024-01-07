@@ -40,7 +40,7 @@ function saveUserToDatabase($userId) {
     $dbname = "yuksali9_edu"; // O'zgartiring
 
     // MySQL bağlantısını yaratish
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
 
     // Bağlanti tekshirish
     if ($conn->connect_error) {
