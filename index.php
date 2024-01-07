@@ -27,9 +27,6 @@ $params = [
 $response = file_get_contents($telegramApiUrl . '?' . http_build_query($params));
 $responseDatas = json_decode($response, true);
 
-$datas = [];
-foreach($responseDatas as $data){
-    $datas[] = $data;
-}
+echo "<pre>";
 
-print_r($datas);
+print_r($responseDatas);
