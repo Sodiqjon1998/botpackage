@@ -36,6 +36,8 @@ function sendMessage($chatId, $message, $token)
 // Foydalanuvchini ma'lumotlar bazasiga qo'shish uchun funksiya
 function saveUserToDatabase($userId)
 {
+
+    echo $userId;
     $servername = "localhost"; // O'zgartiring
     $username = "yuksali9_edu"; // O'zgartiring
     $password = "aS7X?uamuE]I"; // O'zgartiring
