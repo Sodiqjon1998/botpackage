@@ -1,38 +1,62 @@
 <?php
-// Telegram botning tokeni
 $token = "6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc";
 
-// Telegram dan kelgan so'rovni olish
 $update = json_decode(file_get_contents("php://input"), TRUE);
 
-// Kelgan so'rovni tekshirish
-if (isset($update["message"])) {
-    $chatId = $update["message"]["chat"]["id"];
+// Start komandasini tekshirish
+if (isset($update["message"]) && isset($update["message"]["text"])) {
     $messageText = $update["message"]["text"];
-    $userId = $update['message']['from']['id'];
+    $chatId = $update["message"]["chat"]["id"];
+    $userId = $update["message"]["from"]["id"];
 
-    if ($messageText == '/startbot') {
+    // Start komandasini tekshirish
+    if ($messageText == '/start') {
         // Foydalanuvchiga salom berish
         $responseText = "Assalomu alaykum! Botimizga xush kelibsiz, $userId!";
-        sendMessage($chatId, $responseText, $token, $userId);
-    }
+        sendMessage($chatId, $responseText, $token);
 
-    // Telegramga javob yuborish
-    sendMessage($chatId, $responseText, $token, $userId);
+        // Foydalanuvchini ma'lumotlar bazasiga qo'shish
+        saveUserToDatabase($userId);
+    }
 }
 
 // Telegramga javob yuborish uchun funksiya
-function sendMessage($chatId, $message, $token, $userId) {
+function sendMessage($chatId, $message, $token) {
     $url = "https://api.telegram.org/bot$token/sendMessage";
     $params = [
         'chat_id' => $chatId,
         'text' => $message,
     ];
 
-    echo $userId;
-
     $url = $url . '?' . http_build_query($params);
     file_get_contents($url);
 }
 
+// Foydalanuvchini ma'lumotlar bazasiga qo'shish uchun funksiya
+function saveUserToDatabase($userId) {
+    $servername = "localhost"; // O'zgartiring
+    $username = "yuksali9_med"; // O'zgartiring
+    $password = "d9e[I2J0l=Pw"; // O'zgartiring
+    $dbname = "yuksali9_edu"; // O'zgartiring
+
+    // MySQL bağlantısını yaratish
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Bağlanti tekshirish
+    if ($conn->connect_error) {
+        die("Xatolik: " . $conn->connect_error);
+    }
+
+    // Foydalanuvchi ma'lumotlarini saqlash so'rovi
+    $sql = "INSERT INTO user1 (user_id) VALUES ($userId)";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Foydalanuvchi ma'lumotlari saqlandi";
+    } else {
+        echo "Xatolik: " . $conn->error;
+    }
+
+    // MySQL bağlantisini yopish
+    $conn->close();
+}
 ?>
