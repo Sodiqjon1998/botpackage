@@ -9,24 +9,22 @@ $password = "aJT4.Q?luLRs";
 $dbname = "avisenam_ed";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 // Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+  die("Connection failed: " . mysqli_connect_error());
 }
-$username1 = $update['message']['from']['username'];
-$user_id = $update['message']['from']['id'];
 
-$sql = "INSERT INTO bot_users (user_id, first_name)
-VALUES ($user_id, $username1)";
+$sql = "INSERT INTO bot_users (user_id, first_name, text)
+VALUES ('1', 'Doe', 'john@example.com')";
 
-if ($conn->query($sql) === TRUE) {
+if (mysqli_query($conn, $sql)) {
   echo "New record created successfully";
 } else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
+  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 
-$conn->close();
+mysqli_close($conn);
 
 
 
