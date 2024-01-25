@@ -30,7 +30,7 @@ mysqli_close($conn);
 
 $url = "https://api.telegram.org/bot6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc/sendMessage";
 $params = [
-    'chat_id' => 6721406026,
+    'chat_id' => $update['message']['chat']['id'],
     'text' => "Assalomu alaykum /start shu kabi yuboring!",
 ];
 
