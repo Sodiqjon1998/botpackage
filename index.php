@@ -39,7 +39,7 @@ $keyboard = [
   "resize_keyboard" => true,
   "one_time_keyboard" => true,
 ];
-
+$encodedKeyboard = json_encode($keyboard);
 $params = [
     'chat_id' => $update['message']['chat']['id'],
     'text' => "Assalomu alaykum /start shu kabi yuboring!",
