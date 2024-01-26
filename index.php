@@ -15,8 +15,7 @@ $sql = "INSERT INTO bot_users (user_id, first_name, username, is_bot, language_c
     '{$update['message']['from']['first_name']}', 
     '{$update['message']['from']['username']}'),
     '{$update['message']['from']['is_bot']}', 
-    '{$update['message']['from']['language_code']}', 
-    ";
+    '{$update['message']['from']['language_code']}'";
 
 if (mysqli_query($conn, $sql)) {
   echo "New record created successfully";
