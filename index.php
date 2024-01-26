@@ -41,7 +41,7 @@ $keyboard = [
 ];
 $encodedKeyboard = json_encode($keyboard);
 $params = [
-  'chat_id' => -1002089884417,
+  'chat_id' => $update['message']['chat']['id'],
   'text' => "Assalomu alaykum /start shu kabi yuboring!",
   'reply_markup' => $encodedKeyboard
 ];
