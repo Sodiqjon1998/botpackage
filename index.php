@@ -29,9 +29,21 @@ mysqli_close($conn);
 
 
 $url = "https://api.telegram.org/bot6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc/sendMessage";
+
+$keyboard = [
+  "keyboard" => [
+    [["text" => "Checkbox 1", "request_contact" => true]],
+    [["text" => "Checkbox 2", "request_contact" => true]],
+    [["text" => "Yuborish"]],
+  ],
+  "resize_keyboard" => true,
+  "one_time_keyboard" => true,
+];
+$encodedKeyboard = json_encode($keyboard);
 $params = [
-    'chat_id' => -1002089884417,
-    'text' => "Assalomu alaykum /start shu kabi yuboring!",
+  'chat_id' => $update['message']['chat']['id'],
+  'text' => "Assalomu alaykum /start shu kabi yuboring!",
+  'reply_markup' => $encodedKeyboard
 ];
 
 $url = $url . '?' . http_build_query($params);
