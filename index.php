@@ -20,10 +20,10 @@ define("API_KEY", '6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc');
 $url = "https://api.telegram.org/bot".API_KEY."/sendMessage";
 
 
-$sql = "INSERT INTO bot_users (user_id, first_name, username, is_bot, language_code)
+$sql = "INSERT INTO bot_users (user_id, first_name, username)
   VALUES (
     '{$update['message']['from']['id']}', 
-    '{$update['message']['from']['first_name']}', '{$update['message']['from']['username']}', '{$update['message']['from']['is_bot']}','{$update['message']['from']['language_code']}')";
+    '{$update['message']['from']['first_name']}', '{$update['message']['from']['username']}')";
 
 if (mysqli_query($conn, $sql)) {
   echo "New record created successfully";
