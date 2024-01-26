@@ -16,7 +16,12 @@ if (!$conn) {
 }
 
 $sql = "INSERT INTO bot_users (user_id, first_name, username, is_bot, language_code)
-VALUES ('{$update['message']['from']['id']}', '{$update['message']['from']['username']}', '{$update['message']['from']['username']}', '{$update['message']['from']['is_bot']}', '{$update['message']['from']['language_code']}')";
+VALUES (
+  '{$update['message']['from']['id']}', 
+  '{$update['message']['from']['first_name']}', 
+  '{$update['message']['from']['username']}', 
+  '{$update['message']['from']['is_bot']}', 
+  '{$update['message']['from']['language_code']}')";
 
 if (mysqli_query($conn, $sql)) {
   echo "New record created successfully";
@@ -32,18 +37,18 @@ $url = "https://api.telegram.org/bot6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWG
 
 $keyboard = [
   "keyboard" => [
-      [["text" => "Checkbox 1", "request_contact" => true]],
-      [["text" => "Checkbox 2", "request_contact" => true]],
-      [["text" => "Yuborish"]],
+    [["text" => "Checkbox 1", "request_contact" => true]],
+    [["text" => "Checkbox 2", "request_contact" => true]],
+    [["text" => "Yuborish"]],
   ],
   "resize_keyboard" => true,
   "one_time_keyboard" => true,
 ];
 
 $params = [
-    'chat_id' => $update['message']['chat']['id'],
-    'text' => "Assalomu alaykum /start shu kabi yuboring!",
-    'reply_markup'=>$encodedKeyboard
+  'chat_id' => $update['message']['chat']['id'],
+  'text' => "Assalomu alaykum /start shu kabi yuboring!",
+  'reply_markup' => json_encode($keyboard)
 ];
 
 $url = $url . '?' . http_build_query($params);
