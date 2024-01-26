@@ -1,7 +1,7 @@
 <?php
-require_once "config.php";
 
 $update = json_decode(file_get_contents('php://input'), true);
+
 
 $servername = "localhost";
 $username = "avisenam_ed";
@@ -15,8 +15,8 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "INSERT INTO bot_users (user_id, first_name, username)
-VALUES ('{$update['message']['from']['id']}', '{$update['message']['from']['first_name']}', '{$update['message']['from']['username']}')";
+$sql = "INSERT INTO bot_users (user_id, first_name, text)
+VALUES ('{$update['message']['from']['id']}', '{$update['message']['from']['username']}', '{$update['message']['text']}')";
 
 if (mysqli_query($conn, $sql)) {
   echo "New record created successfully";
@@ -26,11 +26,9 @@ if (mysqli_query($conn, $sql)) {
 
 mysqli_close($conn);
 
-define('API_KEY', '6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc');
 
 
-
-$url = "https://api.telegram.org/bot" . API_KEY . "/sendMessage";
+$url = "https://api.telegram.org/bot6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc/sendMessage";
 
 $keyboard = [
   "keyboard" => [
