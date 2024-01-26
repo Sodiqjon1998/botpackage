@@ -3,8 +3,8 @@ require_once "config.php";
 
 $update = json_decode(file_get_contents('php://input'), true);
 
-$sql = "INSERT INTO bot_users (user_id, first_name, text)
-VALUES ('{$update['message']['from']['id']}', '{$update['message']['from']['username']}', '{$update['message']['text']}')";
+$sql = "INSERT INTO bot_users (user_id, first_name, username)
+VALUES ('{$update['message']['from']['id']}', '{$update['message']['from']['first_name']}', '{$update['message']['from']['username']}')";
 
 if (mysqli_query($conn, $sql)) {
   echo "New record created successfully";
