@@ -21,7 +21,7 @@ define('API_KEY', '6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc');
 function sendMessage(){
   $url = "https://api.telegram.org/bot".API_KEY."/sendMessage";
   global $url;
-  global $update;
+  $update = json_decode(file_get_contents('php://input'), true);
 
   $keyboard = [
     "keyboard" => [
@@ -40,7 +40,7 @@ function sendMessage(){
   ];
   
   $url = $url . '?' . http_build_query($params);
-  file_get_contents($url);
+  return file_get_contents($url);
 }
 
 echo sendMessage();
