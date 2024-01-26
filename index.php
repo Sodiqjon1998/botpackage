@@ -40,9 +40,9 @@ function sendMessage(){
   ];
   
   $url = $url . '?' . http_build_query($params);
-  return file_get_contents($url);
+  echo file_get_contents($url);
 }
 
-echo sendMessage();
+sendMessage();
 
 
