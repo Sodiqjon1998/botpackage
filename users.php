@@ -39,33 +39,37 @@ $i = 0;
 
 <body>
     <div class="container-fluid">
-    <table class="table table-bordered border-primary">
-        <thead>
-            <th>T/R</th>
-            <th>ID</th>
-            <th>Foydalanuvchi nomi</th>
-            <th>Ism va Familya</th>
-            <th>Bot yoki /emas</th>
-            <th>Tili</th>
-        </thead>
-        <?php if (mysqli_num_rows($result) > 0) { ?>
-            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                <tr>
-                    <td><?= $i ?></td>
-                    <td><?= $row['user_id'] ?></td>
-                    <td><?= $row['username'] ?></td>
-                    <td><?= $row['first_name'] ?></td>
-                    <td><?= $row['is_bot'] ?></td>
-                    <td><?= $row['language_code'] ?></td>
-                </tr>
-            <?php $i += 1;
-            } ?>
-        <?php } else { ?>
-            <tr>
-                <td>0</td>
-            </tr>
-        <?php } ?>
-    </table>
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <th>T/R</th>
+                        <th>ID</th>
+                        <th>Foydalanuvchi nomi</th>
+                        <th>Ism va Familya</th>
+                        <th>Bot yoki /emas</th>
+                        <th>Tili</th>
+                    </thead>
+                    <?php if (mysqli_num_rows($result) > 0) { ?>
+                        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                            <tr>
+                                <td><?= $i ?></td>
+                                <td><?= $row['user_id'] ?></td>
+                                <td><?= $row['username'] ?></td>
+                                <td><?= $row['first_name'] ?></td>
+                                <td><?= $row['is_bot'] ?></td>
+                                <td><?= $row['language_code'] ?></td>
+                            </tr>
+                        <?php $i += 1;
+                        } ?>
+                    <?php } else { ?>
+                        <tr>
+                            <td>0</td>
+                        </tr>
+                    <?php } ?>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 
