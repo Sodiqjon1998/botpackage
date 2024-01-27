@@ -1,5 +1,5 @@
 <?php
-
+$update = json_decode(file_get_contents('php://input'), true);
 define("API_KEY", '6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc');
 
 $servername = "localhost";
@@ -62,7 +62,7 @@ function sendMessage(){
   ];
   
   $url = $url . '?' . http_build_query($params);
-  return file_get_contents($url);
+  returnfile_get_contents($url);
 }
 
 if($update['message']['text'] == '/start'){
