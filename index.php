@@ -46,6 +46,9 @@ $sql1 = "SELECT * FROM bot_users Where not user_id in ('{$update['message']['fro
 // Execute the query
 $result = mysqli_query($conn, $sql1);
 
+echo "<pre>";
+print_r($result);
+
 if(mysqli_num_rows($result) > 0){
   echo sendMessage("sendMessage", $params);
 }else{
