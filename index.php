@@ -31,15 +31,6 @@ if (mysqli_query($conn, $sql)) {
   echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 
-
-
-$sql1 = "select * from product";
-
-$result = mysqli_query($conn, $sql1);
-
-while($row = mysqli_fetch_array($result)){
-  echo $row['user_id'];
-}
 mysqli_close($conn);
 
 function sendMessage(){
@@ -82,33 +73,3 @@ public function kickUser($chatId, $userId)
 
 
 ?>
-
-<table>
-  <thead>
-    <th>T/R</th>
-    <th>User_id</th>
-    <th>Username</th>
-    <th>First Name</th>
-    <th>Bot yoki bot emas</th>
-    <th>Tili</th>
-  </thead>
-    <?php 
-      if(mysqli_num_rows($result) > 0){
-        $i = 1;
-        while($row = mysqli_fetch_array($result)){
-    ?>
-  <tr>
-      <td><?=$i;?></td>
-      <td><?=$row['id']?></td>
-      <td><?=$row['user_id']?></td>
-      <td><?=$row['username']?></td>
-      <td><?=$row['first_name']?></td>
-      <td><?=$row['is_bot']?></td>
-      <td><?=$row['language_code']?></td>
-  </tr>
-  <?php
-        $i += 1;
-      }
-    }
-  ?>
-</table>
