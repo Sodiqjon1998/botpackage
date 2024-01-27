@@ -42,6 +42,8 @@ $result = mysqli_query($conn, $sql1);
 
 if (mysqli_num_rows($result) > 0) {
   // output data of each row
+  echo "<pre>";
+  print_r(mysqli_fetch_assoc($result));
   while($row = mysqli_fetch_assoc($result)) {
     echo "id: " . $row["user_id"]. " - Name: " . $row["firs_tname"]. " " . $row["username"]. "<br>";
   }
