@@ -1,6 +1,4 @@
 <?php
-$update = json_decode(file_get_contents('php://input'), true);
-define("API_KEY", '6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc');
 
 $servername = "localhost";
 $username = "avisenam_ed";
@@ -15,15 +13,17 @@ if (!$conn) {
 }
 
 
+$update = json_decode(file_get_contents('php://input'), true);
+
+define("API_KEY", '6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc');
+
+$url = "https://api.telegram.org/bot".API_KEY."/sendMessage";
 
 
 $sql = "INSERT INTO bot_users (user_id, first_name, username, is_bot, language_code)
-VALUES (
-  '{$update['message']['from']['id']}', 
-  '{$update['message']['from']['first_name']}', 
-  '{$update['message']['from']['username']}', 
-  '{$update['message']['from']['is_bot']}', 
-  '{$update['message']['from']['language_code']}')";
+  VALUES (
+    '{$update['message']['from']['id']}', 
+    '{$update['message']['from']['first_name']}', '{$update['message']['from']['username']}', '{$update['message']['from']['is_bot']}', '{$update['message']['from']['language_code']}')";
 
 if (mysqli_query($conn, $sql)) {
   echo "New record created successfully";
@@ -35,12 +35,9 @@ mysqli_close($conn);
 
 
 
-
 function sendMessage(){
-
-  $update = json_decode(file_get_contents('php://input'), true);
-  $url = "https://api.telegram.org/bot".API_KEY."/sendMessage";
-
+  global $update;
+  global $url;
   $keyboard = [
     "keyboard" => [
       [["text" => "Checkbox 1", "request_contact" => true]],
@@ -50,33 +47,15 @@ function sendMessage(){
     "resize_keyboard" => true,
     "one_time_keyboard" => true,
   ];
-
-
   $encodedKeyboard = json_encode($keyboard);
   $params = [
-    // 'chat_id' => $update['message']['from']['id'],
-    // 'chat_id' => $update['message']['chat']['id'],
-    'chat_id' => -1002089884417,
+    'chat_id' => $update['message']['from']['id'],
     'text' => "Assalomu alaykum /start shu kabi yuboring!",
-    // 'reply_markup' => $encodedKeyboard
+    'reply_markup' => $encodedKeyboard
   ];
   
   $url = $url . '?' . http_build_query($params);
-  returnfile_get_contents($url);
+  file_get_contents($url);
 }
 
-// if($update['message']['text'] == '/start'){
-  echo sendMessage();
-// }
-
-
-
-function kickUser($chatId, $userId)
-{
-    // Set up the API endpoint
-    $apiUrl = "https://api.telegram.org/bot".API_KEY."/deleteMessage?chat_id={$chatId}&message_id={$userId}";
-
-    // You can use curl or any other HTTP library to make the request
-    file_get_contents($apiUrl);
-}
-
+echo sendMessage();
