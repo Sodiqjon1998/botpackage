@@ -52,7 +52,7 @@ function check($update)
 
 
     if (mysqli_num_rows($result) > 0) {
-        $rows = mysqli_fetch_assoc($result);
+        $rows = mysqli_fetch_all($result);
         if (in_array($update['message']['from']['id'], $rows)) {
             echo sendMessage("sendMessage", $params);
         } else {
