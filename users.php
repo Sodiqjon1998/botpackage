@@ -19,7 +19,7 @@ if (mysqli_num_rows($result) > 0) {
 }
 
 // Close the connection
-mysqli_close($conn);
+
 
 $i = 0;
 ?>
@@ -68,3 +68,8 @@ $i = 0;
 </body>
 
 </html>
+
+
+<?php
+
+mysqli_close($conn);
