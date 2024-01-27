@@ -41,17 +41,24 @@ $notes = [
 
 
 
-$sql1 = "SELECT * FROM bot_users Where user_id in ('{$update['message']['from']['id']}')";
+$sql1 = "SELECT * FROM bot_users";
 
 // Execute the query
 $result = mysqli_query($conn, $sql1);
 
 
 if (mysqli_num_rows($result) > 0) {
-  echo sendMessage("sendMessage", $params);
+  while($row = mysqli_fetch_assoc($result)){
+    if($row['user_id'] == $update['message']['from']['id']){
+      echo sendMessage("sendMessage", $params);
+    }
+    else {
+      echo kickUser($chat_id, $update['message']['from']['id']);
+      echo sendMessage("sendMessage", $notes);
+    }
+  }
 } else {
-  echo kickUser($chat_id, $update['message']['from']['id']);
-  echo sendMessage("sendMessage", $notes);
+  echo "0";
 }
 
 mysqli_close($conn);
