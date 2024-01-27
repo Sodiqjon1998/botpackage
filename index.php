@@ -33,7 +33,7 @@ if (mysqli_query($conn, $sql)) {
 
 mysqli_close($conn);
 
-$sql = "SELECT * FROM bot_users";
+$sql = "SELECT user_id, username, first_name, is_bot, language_code FROM bot_users";
 
 $result = mysqli_query($conn, $sql);
 
