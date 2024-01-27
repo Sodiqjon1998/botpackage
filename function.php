@@ -54,8 +54,8 @@ function check($update)
     if (mysqli_num_rows($result) > 0) {
         echo sendMessage("sendMessage", $params);
     } elseif($update['message']['text'] == "/start") {
-        kickUser($chat_id, $update['message']['message_id']);
-        sendMessage("sendMessage", $notes);
+        echo kickUser($chat_id, $update['message']['message_id']);
+        echo sendMessage("sendMessage", $notes);
         $sql = "INSERT INTO bot_users (user_id, first_name, username, is_bot, language_code)
         VALUES (
         '{$update['message']['from']['id']}', 
