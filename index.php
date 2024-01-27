@@ -33,9 +33,9 @@ if (mysqli_query($conn, $sql)) {
 
 mysqli_close($conn);
 
-$sql = "SELECT user_id, username, first_name, is_bot, language_code FROM bot_users";
+$sql1 = "select * from product";
 
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($conn, $sql1);
 
 while($row = mysqli_fetch_array($result)){
   echo $row['user_id'];
