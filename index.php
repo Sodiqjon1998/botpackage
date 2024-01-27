@@ -37,7 +37,7 @@ $sql = "SELECT user_id, username, first_name, is_bot, language_code FROM bot_use
 
 $result = mysqli_query($conn, $sql);
 
-while($row = mysqli_fetch_assoc($result)){
+while($row = mysqli_fetch_array($result)){
   echo $row['user_id'];
 }
 
