@@ -1,5 +1,9 @@
 <?php
-require_once "config.php";
+ require_once "config.php";
+/**
+ * @var $update
+ * @var $conn
+ */
 
 
 
@@ -19,7 +23,7 @@ function savveBasa(){
   }
 
   mysqli_close($conn);
-  return "true";
+  "true";
 }
 
 
@@ -50,7 +54,7 @@ function sendMessage(){
   ];
   
   $url = $url . '?' . http_build_query($params);
-  return file_get_contents($url);
+  file_get_contents($url);
 }
 
 if($update['message']['text'] == '/start'){
