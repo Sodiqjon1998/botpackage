@@ -23,7 +23,10 @@ $url = "https://api.telegram.org/bot".API_KEY."/sendMessage";
 $sql = "INSERT INTO bot_users (user_id, first_name, username, is_bot, language_code)
   VALUES (
     '{$update['message']['from']['id']}', 
-    '{$update['message']['from']['first_name']}', '{$update['message']['from']['username']}', '{$update['message']['from']['is_bot']}', '{$update['message']['from']['language_code']}')";
+    '{$update['message']['from']['first_name']}', 
+    '{$update['message']['from']['username']}', 
+    '{$update['message']['from']['is_bot']}', 
+    '{$update['message']['from']['language_code']}')";
 
 if (mysqli_query($conn, $sql)) {
   echo "New record created successfully";
@@ -60,4 +63,18 @@ function sendMessage(){
   file_get_contents($url);
 }
 
-echo sendMessage();
+if($update['message']['text'] == '/start'){
+  echo sendMessage();
+}
+
+
+
+function kickUser($chatId, $userId)
+{
+    // Set up the API endpoint
+    $apiUrl = "https://api.telegram.org/bot".API_KEY."/deleteMessage?chat_id={$chatId}&message_id={$userId}";
+
+    // You can use curl or any other HTTP library to make the request
+    file_get_contents($apiUrl);
+}
+
