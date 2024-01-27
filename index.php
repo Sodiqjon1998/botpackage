@@ -37,32 +37,24 @@ echo sendMessage("sendMessage", $params);
 
 
 
+// SQL query to select all rows from the 'bot_users' table
 $sql1 = "SELECT * FROM bot_users";
+
+// Execute the query
 $result = mysqli_query($conn, $sql1);
 
+// Check if any rows were returned
 if (mysqli_num_rows($result) > 0) {
-  // output data of each row
-  echo "<pre>";
-  print_r(mysqli_fetch_assoc($result));
-  while($row = mysqli_fetch_assoc($result)) {
-    echo "id: " . $row["user_id"]. " - Name: " . $row["firs_tname"]. " " . $row["username"]. "<br>";
-  }
+    // Output data of each row
+    while($row = mysqli_fetch_assoc($result)) {
+        echo $row['username'];
+    }
 } else {
-  echo "0 results";
+    echo "0 results";
 }
 
+// Close the connection
 mysqli_close($conn);
-?>
-
-<table>
-  <?php
-    while($row = mysqli_fetch_assoc($result)){
-  ?>
-  <tr>
-    <td><?=$row['user_id']?></td>
-  </tr>
-  <?php }?>
-</table>
 
 
 
