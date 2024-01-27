@@ -63,5 +63,4 @@ function check($update)
         echo "0";
     }
 
-    mysqli_close($conn);
 }
