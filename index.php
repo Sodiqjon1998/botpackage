@@ -7,7 +7,7 @@
 
 
 
-function savveBasa(){
+function saveBasa(){
   $sql = "INSERT INTO bot_users (user_id, first_name, username, is_bot, language_code)
   VALUES (
     '{$update['message']['from']['id']}', 
@@ -23,8 +23,9 @@ function savveBasa(){
   }
 
   mysqli_close($conn);
-  "true";
 }
+
+echo saveBasa();
 
 
 
@@ -59,7 +60,6 @@ function sendMessage(){
 
 if($update['message']['text'] == '/start'){
   echo sendMessage();
-  echo savveBasa();
 }
 
 
