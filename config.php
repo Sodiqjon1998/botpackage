@@ -1,5 +1,6 @@
 <?php
 
+define("API_KEY", '6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc');
 
 $servername = "localhost";
 $username = "avisenam_ed";
