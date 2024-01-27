@@ -24,41 +24,10 @@ if (mysqli_query($conn, $sql)) {
 
 mysqli_close($conn);
 
-$text = $update['message']['text'];
-$chat_id = $update['message']['chat']['id'];
-
-$params = [
-  'chat_id' => $chat_id,
-  'text' => $text
-];
-
-$notes = [
-  'chat_id' => $chat_id,
-  'text' => "/start deb yozib yuboring"
-];
 
 
 
+check($update);
 
 
-$sql1 = "SELECT * FROM bot_users";
 
-// Execute the query
-$result = mysqli_query($conn, $sql1);
-
-
-if (mysqli_num_rows($result) > 0) {
-  while($row = mysqli_fetch_assoc($result)){
-    if($row['user_id'] == $update['message']['from']['id']){
-      echo sendMessage("sendMessage", $params);
-    }
-    else {
-      echo kickUser($chat_id, $update['message']['from']['id']);
-      echo sendMessage("sendMessage", $notes);
-    }
-  }
-} else {
-  echo "0";
-}
-
-mysqli_close($conn);
