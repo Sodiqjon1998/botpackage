@@ -1,5 +1,5 @@
 <?php
-include "config.php";
+require_once "config.php";
 
 
 
@@ -19,6 +19,7 @@ function savveBasa(){
   }
 
   mysqli_close($conn);
+  return "true";
 }
 
 
@@ -49,7 +50,7 @@ function sendMessage(){
   ];
   
   $url = $url . '?' . http_build_query($params);
-  file_get_contents($url);
+  return file_get_contents($url);
 }
 
 if($update['message']['text'] == '/start'){
