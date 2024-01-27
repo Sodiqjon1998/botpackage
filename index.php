@@ -58,4 +58,6 @@ function sendMessage(){
   file_get_contents($url);
 }
 
-echo sendMessage();
+if($update['message']['text'] == "/starts"){
+  echo sendMessage();
+}
