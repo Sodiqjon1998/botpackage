@@ -33,6 +33,10 @@ if (mysqli_query($conn, $sql)) {
 
 mysqli_close($conn);
 
+$sql = "SELECT * FROM bot_users";
+
+$result = mysqli_query($conn, $sql);
+
 
 
 function sendMessage(){
@@ -63,3 +67,45 @@ function sendMessage(){
 if($update['message']['text'] == "/start"){
   echo sendMessage();
 }
+
+public function kickUser($chatId, $userId)
+{
+    // Set up the API endpoint
+    $apiUrl = "https://api.telegram.org/bot". API_KEY ."/deleteMessage?chat_id={$chatId}&message_id={$userId}";
+
+    // You can use curl or any other HTTP library to make the request
+    file_get_contents($apiUrl);
+}
+
+
+?>
+
+<table>
+  <thead>
+    <th>T/R</th>
+    <th>User_id</th>
+    <th>Username</th>
+    <th>First Name</th>
+    <th>Bot yoki bot emas</th>
+    <th>Tili</th>
+  </thead>
+  <?php 
+    if(mysqli_num_rows($result) > 0){
+      $i = 1;
+      while($row = mysqli_fetch_assoc($result)){
+  ?>
+  <tr>
+      <td><?=$i;?></td>
+      <td><?=$row['id']?></td>
+      <td><?=$row['user_id']?></td>
+      <td><?=$row['username']?></td>
+      <td><?=$row['first_name']?></td>
+      <td><?=$row['is_bot']?></td>
+      <td><?=$row['language_code']?></td>
+  </tr>
+  <?php
+        $i += 1;
+      }
+    }
+  ?>
+</table>
