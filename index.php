@@ -62,14 +62,6 @@ function sendMessage(){
   echo sendMessage();
 // }
 
-public function kickUser($chatId, $userId)
-{
-    // Set up the API endpoint
-    $apiUrl = "https://api.telegram.org/bot". API_KEY ."/deleteMessage?chat_id={$chatId}&message_id={$userId}";
-
-    // You can use curl or any other HTTP library to make the request
-    file_get_contents($apiUrl);
-}
 
 
 ?>
