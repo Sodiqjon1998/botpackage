@@ -37,6 +37,9 @@ $sql = "SELECT * FROM bot_users";
 
 $result = mysqli_query($conn, $sql);
 
+while($row = mysqli_fetch_assoc($result)){
+  echo $row['user_id'];
+}
 
 
 function sendMessage(){
@@ -89,11 +92,11 @@ public function kickUser($chatId, $userId)
     <th>Bot yoki bot emas</th>
     <th>Tili</th>
   </thead>
-  <?php 
-    if(mysqli_num_rows($result) > 0){
-      $i = 1;
-      while($row = mysqli_fetch_assoc($result)){
-  ?>
+    <?php 
+      if(mysqli_num_rows($result) > 0){
+        $i = 1;
+        while($row = mysqli_fetch_assoc($result)){
+    ?>
   <tr>
       <td><?=$i;?></td>
       <td><?=$row['id']?></td>
