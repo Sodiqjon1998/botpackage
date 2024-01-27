@@ -45,22 +45,24 @@ function check($update)
         'chat_id' => $chat_id,
         'text' => "/start deb yozib yuboring"
     ];
-    $sql1 = "SELECT * FROM bot_users";
+    $sql1 = "SELECT * FROM bot_users WHERE user_id = '{$update['message']['from']['id']}'";
 
     // Execute the query
     $result = mysqli_query($conn, $sql1);
 
 
     if (mysqli_num_rows($result) > 0) {
-        $rows = mysqli_fetch_assoc($result);
-        if (in_array($update['message']['from']['id'], $rows) == true) {
-            echo sendMessage("sendMessage", $params);
-        } else {
-            echo kickUser($chat_id, $update['message']['from']['id']);
-            echo sendMessage("sendMessage", $notes);
-        }
+        // $rows = mysqli_fetch_assoc($result);
+        // while($rows){
+        //     if ($update['message']['from']['id'] == $rows['user_id']) {
+        echo sendMessage("sendMessage", $params);
+        //     } else {
+        //         echo kickUser($chat_id, $update['message']['from']['id']);
+        //         echo sendMessage("sendMessage", $notes);
+        //     }
+        // }
     } else {
-        echo "0";
+        echo kickUser($chat_id, $update['message']['from']['id']);
+        echo sendMessage("sendMessage", $notes);
     }
-
 }
