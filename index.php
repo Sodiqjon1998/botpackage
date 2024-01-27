@@ -52,5 +52,15 @@ if (mysqli_num_rows($result) > 0) {
 mysqli_close($conn);
 ?>
 
+<table>
+  <?php
+    while($row = mysqli_fetch_assoc($result)){
+  ?>
+  <tr>
+    <td><?=$row['user_id']?></td>
+  </tr>
+  <?php }?>
+</table>
+
 
 
