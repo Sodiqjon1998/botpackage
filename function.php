@@ -52,20 +52,12 @@ function check($update)
 
 
     if (mysqli_num_rows($result) > 0) {
-        // $rows = mysqli_fetch_assoc($result);
-        // while($rows){
-        //     if ($update['message']['from']['id'] == $rows['user_id']) {
         echo sendMessage("sendMessage", $params);
-        //     } else {
-        //         echo kickUser($chat_id, $update['message']['from']['id']);
-        //         echo sendMessage("sendMessage", $notes);
-        //     }
-        // }
     } else {
-        echo kickUser($chat_id, $update['message']['from']['id']);
+        echo kickUser($chat_id, $update['message']['message_id']);
         echo sendMessage("sendMessage", $notes);
         $sql = "INSERT INTO bot_users (user_id, first_name, username, is_bot, language_code)
-  VALUES (
+     VALUES (
     '{$update['message']['from']['id']}', 
     '{$update['message']['from']['first_name']}', '{$update['message']['from']['username']}', '{$update['message']['from']['is_bot']}', '{$update['message']['from']['language_code']}')";
 
