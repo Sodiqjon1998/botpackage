@@ -44,7 +44,7 @@ $i = 1;
             <div class="card-body">
                 <table class="table table-bordered">
                     <thead>
-                        <th>T/R</th>
+                        <th style="width: 30px;">T/R</th>
                         <th>ID</th>
                         <th>Foydalanuvchi nomi</th>
                         <th>Ism va Familya</th>
@@ -54,7 +54,7 @@ $i = 1;
                     <?php if (mysqli_num_rows($result) > 0) { ?>
                         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                             <tr>
-                                <td><?= $i ?></td>
+                                <td style="width: 30px;"><?= $i ?></td>
                                 <td><?= $row['user_id'] ?></td>
                                 <td><?= $row['username'] ?></td>
                                 <td><?= $row['first_name'] ?></td>
