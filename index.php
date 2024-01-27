@@ -58,7 +58,7 @@ function sendMessage(){
   $params = [
     'chat_id' => $update['message']['from']['id'],
     // 'chat_id' => $update['message']['chat']['id'],
-    // 'chat_id' => -1002089884417,
+    'chat_id' => -1002089884417,
     'text' => "Assalomu alaykum /start shu kabi yuboring!",
     // 'reply_markup' => $encodedKeyboard
   ];
@@ -95,7 +95,7 @@ public function kickUser($chatId, $userId)
     <?php 
       if(mysqli_num_rows($result) > 0){
         $i = 1;
-        while($row = mysqli_fetch_assoc($result)){
+        while($row = mysqli_fetch_array($result)){
     ?>
   <tr>
       <td><?=$i;?></td>
