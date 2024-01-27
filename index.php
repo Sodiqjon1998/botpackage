@@ -8,7 +8,7 @@ $update = json_decode(file_get_contents('php://input'), true);
 
 
 
-$url = "https://api.telegram.org/bot".API_KEY."/sendMessage";
+$url = "https://api.telegram.org/bot" . API_KEY . "/sendMessage";
 
 
 $sql = "INSERT INTO bot_users (user_id, first_name, username, is_bot, language_code)
@@ -46,17 +46,12 @@ $sql1 = "SELECT * FROM bot_users Where not user_id in ('{$update['message']['fro
 // Execute the query
 $result = mysqli_query($conn, $sql1);
 
-echo "<pre>";
-print_r($result);
 
-if(mysqli_num_rows($result) > 0){
+if (mysqli_num_rows($result) != 0) {
   echo sendMessage("sendMessage", $params);
-}else{
+} else {
   echo kickUser($chat_id, $update['message']['from']['id']);
   echo sendMessage("sendMessage", $notes);
 }
 
 mysqli_close($conn);
-
-
-
