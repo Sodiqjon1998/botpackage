@@ -32,9 +32,28 @@ $params = [
   'text' => $text
 ];
 
+$notes = [
+  'chat_id' => $chat_id,
+  'text' => "/start deb yozib yuboring"
+];
 
-echo sendMessage("sendMessage", $params);
 
+
+
+
+$sql1 = "SELECT * FROM bot_users Where not user_id in ('{$update['message']['from']['id']}')";
+
+// Execute the query
+$result = mysqli_query($conn, $sql1);
+
+if(mysqli_num_rows($result) != 0){
+  echo sendMessage("sendMessage", $params);
+}else{
+  echo kickUser($chat_id, $update['message']['from']['id']);
+  echo sendMessage("sendMessage", $notes);
+}
+
+mysqli_close($conn);
 
 
 
