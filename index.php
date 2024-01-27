@@ -1,21 +1,12 @@
 <?php
 
-$servername = "localhost";
-$username = "avisenam_ed";
-$password = "aJT4.Q?luLRs";
-$dbname = "avisenam_ed";
-
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-// Check connection
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
+include "config.php";
+include "function.php";
 
 
 $update = json_decode(file_get_contents('php://input'), true);
 
-define("API_KEY", '6721406026:AAHO5AGgz3f4OZD_Z0nSofoISwr_-coWGJc');
+
 
 $url = "https://api.telegram.org/bot".API_KEY."/sendMessage";
 
@@ -33,35 +24,14 @@ if (mysqli_query($conn, $sql)) {
 
 mysqli_close($conn);
 
-function sendMessage(){
-  global $update;
-  global $url;
-  $keyboard = [
-    "keyboard" => [
-      [["text" => "Checkbox 1", "request_contact" => true]],
-      [["text" => "Checkbox 2", "request_contact" => true]],
-      [["text" => "Yuborish"]],
-    ],
-    "resize_keyboard" => true,
-    "one_time_keyboard" => true,
-  ];
-  $encodedKeyboard = json_encode($keyboard);
-  $params = [
-    // 'chat_id' => $update['message']['from']['id'],
-    'chat_id' => $update['message']['chat']['id'],
-    // 'chat_id' => -1002089884417,
-    'text' => "Assalomu alaykum /start shu kabi yuboring!",
-    'reply_markup' => $encodedKeyboard
-  ];
-  
-  $url = $url . '?' . http_build_query($params);
-  file_get_contents($url);
-}
+$text = $update['message']['text'];
+$chat_id = $update['message']['chat']['id'];
 
-// if($update['message']['text'] == "/start"){
-  echo sendMessage();
-// }
+$params = [
+  'chat_id' => $chat_id,
+  'text' => $text
+];
 
 
-
+echo sendMessage("sendMessage", $params);
 ?>
