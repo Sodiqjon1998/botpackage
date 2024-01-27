@@ -53,7 +53,7 @@ function sendMessage(){
     // 'chat_id' => $update['message']['from']['id'],
     'chat_id' => -1002089884417,
     'text' => "Assalomu alaykum /start shu kabi yuboring!",
-    'reply_markup' => $encodedKeyboard
+    // 'reply_markup' => $encodedKeyboard
   ];
   
   $url = $url . '?' . http_build_query($params);
