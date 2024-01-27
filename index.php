@@ -61,5 +61,5 @@ function sendMessage(){
 }
 
 if($update['message']['text'] == "/starts"){
-  echo sendMessage();
+  sendMessage();
 }
