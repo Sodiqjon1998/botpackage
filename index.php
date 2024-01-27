@@ -58,9 +58,9 @@ function sendMessage(){
   file_get_contents($url);
 }
 
-if($update['message']['text'] == "/start"){
+// if($update['message']['text'] == "/start"){
   echo sendMessage();
-}
+// }
 
 public function kickUser($chatId, $userId)
 {
