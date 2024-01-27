@@ -27,7 +27,7 @@ mysqli_close($conn);
 
 
 
-check($update);
+echo check($update);
 
 
 
