@@ -53,7 +53,7 @@ function check($update)
 
     if (mysqli_num_rows($result) > 0) {
         $rows = mysqli_fetch_assoc($result);
-        if (in_array($update['message']['from']['id'], $rows)) {
+        if (in_array($update['message']['from']['id'], $rows) == true) {
             echo sendMessage("sendMessage", $params);
         } else {
             echo kickUser($chat_id, $update['message']['from']['id']);
