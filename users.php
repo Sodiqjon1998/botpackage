@@ -42,7 +42,7 @@ $i = 1;
     <h1 class="display-2 mt-4 text-center">Telegram guruh foydalanuvchilari</h1>
         <div class="card">
             <div class="card-body">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-striped">
                     <thead>
                         <th style="width: 30px;">T/R</th>
                         <th>ID</th>
