@@ -21,7 +21,7 @@ $result = mysqli_query($conn, $sql1);
 // Close the connection
 
 
-$i = 0;
+$i = 1;
 ?>
 
 <!DOCTYPE html>
