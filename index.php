@@ -31,7 +31,7 @@ if (mysqli_query($conn, $sql)) {
   echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 
-mysqli_close($conn);
+
 
 $sql1 = "select * from product";
 
@@ -40,7 +40,7 @@ $result = mysqli_query($conn, $sql1);
 while($row = mysqli_fetch_array($result)){
   echo $row['user_id'];
 }
-
+mysqli_close($conn);
 
 function sendMessage(){
   global $update;
