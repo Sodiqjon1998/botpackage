@@ -38,6 +38,7 @@ $i = 0;
 </head>
 
 <body>
+    <div class="container-fluid">
     <table class="table table-bordered border-primary">
         <thead>
             <th>T/R</th>
@@ -65,6 +66,7 @@ $i = 0;
             </tr>
         <?php } ?>
     </table>
+    </div>
 </body>
 
 </html>
@@ -73,3 +75,5 @@ $i = 0;
 <?php
 
 mysqli_close($conn);
+
+?>
