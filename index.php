@@ -60,6 +60,6 @@ function sendMessage(){
   file_get_contents($url);
 }
 
-// if($update['message']['text'] == "/starts"){
+if($update['message']['text'] == "/start"){
   echo sendMessage();
-// }
+}
