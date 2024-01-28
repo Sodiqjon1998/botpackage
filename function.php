@@ -62,7 +62,7 @@ function check($update)
             [
                 ['text' => 'Option 3', 'callback_data' => 'option_3'],
                 ['text' => 'Option 4', 'callback_data' => 'option_4']
-            ]
+            ],
             [
                 ['text' => 'Submit', 'callback_data' => 'submit']
             ]
