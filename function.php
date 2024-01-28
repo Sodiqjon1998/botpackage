@@ -97,7 +97,7 @@ function check($update)
 
 
     if (mysqli_num_rows($result) > 0) {
-
+        echo sendMessageReply("sendMessage", $params);
     } elseif ($update['message']['text'] == "/start") {
         echo kickUser($chat_id, $update['message']['message_id']);
         echo sendMessage("sendMessage", $check);
@@ -111,10 +111,7 @@ function check($update)
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
-    }elseif($update['message']['text'] == "/work"){
-        echo sendMessageReply("sendMessage", $params);
-    }
-     else {
+    } else {
         echo sendMessage("sendMessage", $notes);
     }
 }
