@@ -74,8 +74,10 @@ function check($update)
 
     $params = [
         'chat_id' => $chat_id,
-        'text' => $text,
-        'reply_markup' => $replyMarkup,
+        'text' => "<select>
+                <option>Save</option>
+            </select>",
+        // 'reply_markup' => $replyMarkup,
     ];
 
     $notes = [
