@@ -59,8 +59,7 @@ function check($update)
     $keyboard = [
         'inline_keyboard' => [
             [
-                ['text' => 'Option 1', 'callback_data' => 'option_1'],
-                ['text' => 'Option 2', 'callback_data' => 'option_2']
+                ['text' => '1. Erta turish (06:30) ✅', 'callback_data' => 'option_1'],
             ],
             [
                 ['text' => 'Option 3', 'callback_data' => 'option_3'],
