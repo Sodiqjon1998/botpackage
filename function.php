@@ -52,8 +52,8 @@ function check($update)
 
 
     if (mysqli_num_rows($result) > 0) {
-        echo sendMessage("sendMessage", $params);
-        echo kickUser($chat_id, $update['message']['message_id']);
+        // echo sendMessage("sendMessage", $params);
+        // echo kickUser($chat_id, $update['message']['message_id']);
     } elseif($update['message']['text'] == "/start") {
         echo kickUser($chat_id, $update['message']['message_id']);
         echo sendMessage("sendMessage", $notes);
@@ -67,5 +67,7 @@ function check($update)
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
+    }else{
+        echo sendMessage("sendMessage", $notes);
     }
 }
