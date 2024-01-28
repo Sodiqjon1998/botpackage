@@ -64,7 +64,7 @@ $i = 1;
                                 <td><?= $row['language_code'] ?></td>
                                 <td>
                                     <a href="<?= $_SERVER['PHP_SELF']; ?>">
-                                        <i class="fa fa-trash"></i>
+                                        <i class="fa fa-trash btn btn-danger btn-md"></i>
                                     </a>
                                 </td>
                             </tr>
