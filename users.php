@@ -72,7 +72,7 @@ $i = 1;
                         } ?>
                     <?php } else { ?>
                         <tr>
-                            <td>0</td>
+                            0
                         </tr>
                     <?php } ?>
                 </table>
