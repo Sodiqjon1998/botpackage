@@ -90,8 +90,6 @@ if(isset($_GET['id'])){
     $deleteSql = "delete from bot_users where id='{$_GET['id']}'";
     $delete_query = mysqli_query($conn, $deleteSql);
     echo "<script>window.open('users.php','_self')</script>";
-}else{
-    header("location:users.php");
 }
 
 mysqli_close($conn);
