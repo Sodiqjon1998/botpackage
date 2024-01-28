@@ -111,7 +111,7 @@ function check($update)
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
-    }elseif($update['message']['text'] == "/reset"){
+    }elseif($update['message']['text'] == "/work"){
         echo sendMessageReply("sendMessage", $params);
     }
      else {
