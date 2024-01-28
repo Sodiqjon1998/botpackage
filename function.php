@@ -83,12 +83,14 @@ function check($update)
 
     $notes = [
         'chat_id' => $chat_id,
-        'text' => "/start deb yozib yuboring"
+        'text' => "/start deb yozib yuboring",
+        'reply_markup' => $replyMarkup,
     ];
 
     $check = [
         'chat_id' => $chat_id,
-        'text' => "Bazaga saqlandi"
+        'text' => "Bazaga saqlandi",
+        'reply_markup' => $replyMarkup,
     ];
     $sql1 = "SELECT * FROM bot_users WHERE user_id = '{$update['message']['from']['id']}'";
 
