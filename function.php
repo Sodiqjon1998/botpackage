@@ -1,6 +1,11 @@
 <?php
 include "config.php";
 
+function dump($what){
+    echo '<pre>'; 
+        print_r($what); 
+    echo '</pre>';
+};
 
 function sendMessage($method = "getMe", $params = [])
 {
@@ -30,7 +35,7 @@ function sendMessageReply($method = "getMe", $params = [])
         CURLOPT_HTTPHEADER => ['Content-Type:multipart/form-data'],
     ]);
     $res = curl_exec($curl);
-    // dump(curl_getinfo($curl));
+    dump(curl_getinfo($curl));
     curl_close($curl);
     return !curl_error($curl) ? json_decode($res, true) : false;
 }
