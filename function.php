@@ -97,6 +97,7 @@ function check($update)
 
 
     if (mysqli_num_rows($result) > 0) {
+        
         echo sendMessageReply("sendMessage", $params);
     } elseif ($update['message']['text'] == "/start") {
         echo kickUser($chat_id, $update['message']['message_id']);
