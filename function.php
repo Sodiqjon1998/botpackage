@@ -84,13 +84,11 @@ function check($update)
     $notes = [
         'chat_id' => $chat_id,
         'text' => "/start deb yozib yuboring",
-        'reply_markup' => $replyMarkup,
     ];
 
     $check = [
         'chat_id' => $chat_id,
         'text' => "Bazaga saqlandi",
-        'reply_markup' => $replyMarkup,
     ];
     $sql1 = "SELECT * FROM bot_users WHERE user_id = '{$update['message']['from']['id']}'";
 
@@ -99,7 +97,7 @@ function check($update)
 
 
     if (mysqli_num_rows($result) > 0) {
-        echo sendMessageReply("sendMessage", $params);
+        echo dump(sendMessageReply("sendMessage", $params));
         // echo kickUser($chat_id, $update['message']['message_id']);
     } elseif ($update['message']['text'] == "/start") {
         echo kickUser($chat_id, $update['message']['message_id']);
