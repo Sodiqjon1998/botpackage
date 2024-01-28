@@ -87,7 +87,7 @@ $i = 1;
 <?php
 
 if(isset($_GET['id'])){
-    $deleteSql = "delete from product where id='{$_GET['id']}'";
+    $deleteSql = "delete from bot_users where id='{$_GET['id']}'";
     $delete_query = mysqli_query($conn, $deleteSql);
     echo "<script>window.open('users.php','_self')</script>";
 }else{
