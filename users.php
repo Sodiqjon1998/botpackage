@@ -73,7 +73,7 @@ $i = 1;
                     <?php } else { ?>
                         <tr>
                             <td colspan="7">
-                                <p class="alert alert-info">
+                                <p class="alert alert-info text-center">
                                     Ma'lumot topilmadi!
                                 </p>
                             </td>
