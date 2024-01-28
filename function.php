@@ -19,6 +19,23 @@ function sendMessage($method = "getMe", $params = [])
 }
 
 
+function sendMessageReply($method = "getMe", $params = [])
+{
+    $url = "https://api.telegram.org/bot" . API_KEY . "/" . $method;
+    $curl = curl_init();
+    curl_setopt_array($curl, [
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POSTFIELDS => $params,
+        CURLOPT_HTTPHEADER => ['Content-Type:multipart/form-data'],
+    ]);
+    $res = curl_exec($curl);
+    // dump(curl_getinfo($curl));
+    curl_close($curl);
+    return !curl_error($curl) ? json_decode($res, true) : false;
+}
+
+
 function kickUser($chatId, $userId)
 {
     // Set up the API endpoint
@@ -38,7 +55,17 @@ function check($update)
 
     $params = [
         'chat_id' => $chat_id,
-        'text' => $text
+        'text' => $text,
+        'reply_markup' => json_encode([
+            'inline_keyboard' => [
+                [
+                    'text_btn' => "🤟 Dasturlash darslari",
+                    'chat_id' => "-1001895306596",
+                    'link' => "https://t.me/+DqLmV4axCd82MTYy",
+                    'required' => false
+                ],
+            ]
+        ])
     ];
 
     $notes = [
@@ -57,9 +84,9 @@ function check($update)
 
 
     if (mysqli_num_rows($result) > 0) {
-        // echo sendMessage("sendMessage", $params);
+        echo sendMessageReply("sendMessage", $params);
         // echo kickUser($chat_id, $update['message']['message_id']);
-    } elseif($update['message']['text'] == "/start") {
+    } elseif ($update['message']['text'] == "/start") {
         echo kickUser($chat_id, $update['message']['message_id']);
         echo sendMessage("sendMessage", $check);
         $sql = "INSERT INTO bot_users (user_id, first_name, username, is_bot, language_code)
@@ -72,7 +99,7 @@ function check($update)
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
-    }else{
+    } else {
         echo sendMessage("sendMessage", $notes);
     }
 }
