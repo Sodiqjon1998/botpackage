@@ -59,7 +59,7 @@ function check($update)
             ['Option 3', 'Option 4']
         ],
         'resize_keyboard' => true, // Optional: make the keyboard resizeable
-        'one_time_keyboard' => true, // Optional: hide the keyboard after the user selects an option
+        'one_time_keyboard' => false, // Optional: hide the keyboard after the user selects an option
         // You can include other optional parameters here, such as selective, selective, and force_reply
     ];
 
