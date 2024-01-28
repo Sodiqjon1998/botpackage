@@ -63,7 +63,7 @@ $i = 1;
                                 <td><?= $row['is_bot'] ?></td>
                                 <td><?= $row['language_code'] ?></td>
                                 <td>
-                                    <a href="<?= $_SERVER['PHP_SELF']; ?>">
+                                    <a href="<?='users.php?id='. $row['id']?>">
                                         <i class="fa fa-trash btn btn-danger btn-md"></i>
                                     </a>
                                 </td>
@@ -85,6 +85,8 @@ $i = 1;
 
 
 <?php
+
+// if(isset())
 
 mysqli_close($conn);
 
