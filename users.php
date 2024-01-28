@@ -72,7 +72,9 @@ $i = 1;
                         } ?>
                     <?php } else { ?>
                         <tr>
-                            0
+                            <td colspan="7">0</td>
+                            <!-- <td>0</td> -->
+                            <!-- <td>0</td> -->
                         </tr>
                     <?php } ?>
                 </table>
