@@ -54,13 +54,16 @@ function check($update)
     $chat_id = $update['message']['chat']['id'];
 
     $keyboard = [
-        'keyboard' => [
-            ['Option 1', 'Option 2'],
-            ['Option 3', 'Option 4']
-        ],
-        'resize_keyboard' => true, // Optional: make the keyboard resizeable
-        'one_time_keyboard' => false, // Optional: hide the keyboard after the user selects an option
-        // You can include other optional parameters here, such as selective, selective, and force_reply
+        'inline_keyboard' => [
+            [
+                ['text' => 'Option 1', 'callback_data' => 'option_1'],
+                ['text' => 'Option 2', 'callback_data' => 'option_2']
+            ],
+            [
+                ['text' => 'Option 3', 'callback_data' => 'option_3'],
+                ['text' => 'Option 4', 'callback_data' => 'option_4']
+            ]
+        ]
     ];
 
     // Convert the keyboard markup array to JSON
