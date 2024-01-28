@@ -45,6 +45,11 @@ function check($update)
         'chat_id' => $chat_id,
         'text' => "/start deb yozib yuboring"
     ];
+
+    $check = [
+        'chat_id' => $chat_id,
+        'text' => "Bazaga saqlandi"
+    ];
     $sql1 = "SELECT * FROM bot_users WHERE user_id = '{$update['message']['from']['id']}'";
 
     // Execute the query
@@ -56,7 +61,7 @@ function check($update)
         // echo kickUser($chat_id, $update['message']['message_id']);
     } elseif($update['message']['text'] == "/start") {
         echo kickUser($chat_id, $update['message']['message_id']);
-        echo sendMessage("sendMessage", $notes);
+        echo sendMessage("sendMessage", $check);
         $sql = "INSERT INTO bot_users (user_id, first_name, username, is_bot, language_code)
         VALUES (
         '{$update['message']['from']['id']}', 
