@@ -72,9 +72,11 @@ $i = 1;
                         } ?>
                     <?php } else { ?>
                         <tr>
-                            <td colspan="7">0</td>
-                            <!-- <td>0</td> -->
-                            <!-- <td>0</td> -->
+                            <td colspan="7">
+                                <p class="alert alert-info">
+                                    Ma'lumot topilmadi!
+                                </p>
+                            </td>
                         </tr>
                     <?php } ?>
                 </table>
