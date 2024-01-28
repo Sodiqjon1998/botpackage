@@ -77,7 +77,7 @@ function check($update)
 
     $params = [
         'chat_id' => $chat_id,
-        'text' => $update['message']['from']['username']. " " . $update['message']['from']['first_name'] . " " . $update['message']['from']['last_name'],
+        'text' => "@".$update['message']['from']['username']. " " . $update['message']['from']['first_name'] . " " . $update['message']['from']['last_name'],
         'reply_markup' => $replyMarkup,
     ];
 
