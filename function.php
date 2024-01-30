@@ -39,6 +39,22 @@ function sendMessageReply($method = "getMe", $params = [])
     return !curl_error($curl) ? json_decode($res, true) : false;
 }
 
+function sendMessageReply1($method = "getMe", $params = [], $data)
+{
+    $params['text'] = $data;
+    $url = "https://api.telegram.org/bot" . API_KEY . "/" . $method;
+    $curl = curl_init();
+    curl_setopt_array($curl, [
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POSTFIELDS => $params,
+        CURLOPT_HTTPHEADER => ['Content-Type:multipart/form-data'],
+    ]);
+    $res = curl_exec($curl);
+    curl_close($curl);
+    return !curl_error($curl) ? json_decode($res, true) : false;
+}
+
 
 function kickUser($chatId, $userId)
 {
@@ -75,12 +91,10 @@ function check($update)
 
     // Convert the keyboard markup array to JSON
     $replyMarkup = json_encode($keyboard);
-    // if(isset($update['callback_query'])){
 
-    // }
     $params = [
         'chat_id' => $update['message']['from']['id'],
-        'text' => "@" . $update['message']['from']['username'] . " " . $update['message']['from']['first_name'] . " " . $update['message']['from']['last_name'] . $update['callback_query']['data'],
+        'text' => "@" . $update['message']['from']['username'] . " " . $update['message']['from']['first_name'] . " " . $update['message']['from']['last_name'],
         'reply_markup' => $replyMarkup,
     ];
 
@@ -101,6 +115,9 @@ function check($update)
 
     if (mysqli_num_rows($result) > 0) {
         if ($update['message']['text'] == "/work") {
+            if (isset($update['callback_query'])) {
+                echo sendMessageReply("sendMessage", $params, $update['callback_query']['data']);
+            }
             echo sendMessageReply("sendMessage", $params);
         } else {
         }
