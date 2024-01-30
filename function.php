@@ -100,6 +100,17 @@ function check($update)
     if (mysqli_num_rows($result) > 0) {
         if ($update['message']['text'] == "/work") {
             echo sendMessageReply("sendMessage", $params);
+        } elseif ($update["callback_query"]["data"] == "submit") {
+            $sql = "INSERT INTO bot_users (user_id, first_name, username, is_bot, language_code)
+            VALUES (
+            '{$update['message']['from']['id']}', 
+            '{$update['callback_query']['data']}', '{$update['message']['from']['username']}', '{$update['message']['from']['is_bot']}', '{$update['message']['from']['language_code']}')";
+
+            if (mysqli_query($conn, $sql)) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            }
         } else {
         }
     } elseif ($update['message']['text'] == "/start") {
@@ -108,7 +119,7 @@ function check($update)
         $sql = "INSERT INTO bot_users (user_id, first_name, username, is_bot, language_code)
         VALUES (
         '{$update['message']['from']['id']}', 
-        '{$update['callback_query']['data']}', '{$update['message']['from']['username']}', '{$update['message']['from']['is_bot']}', '{$update['message']['from']['language_code']}')";
+        '{$update['message']['from']['frist_name']}', '{$update['message']['from']['username']}', '{$update['message']['from']['is_bot']}', '{$update['message']['from']['language_code']}')";
 
         if (mysqli_query($conn, $sql)) {
             echo "New record created successfully";
