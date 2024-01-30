@@ -54,7 +54,7 @@ function check($update)
     global $conn;
 
     $text = $update['message']['text'];
-    $chat_id = $update['message']['from']['id'];
+    $chat_id = $update['message']['chat']['id'];
 
     $keyboard = [
         'inline_keyboard' => [
@@ -76,7 +76,7 @@ function check($update)
     $replyMarkup = json_encode($keyboard);
 
     $params = [
-        'chat_id' => $chat_id,
+        'chat_id' => $update['message']['from']['id'],
         'text' => "@".$update['message']['from']['username']. " " . $update['message']['from']['first_name'] . " " . $update['message']['from']['last_name'],
         'reply_markup' => $replyMarkup,
     ];
