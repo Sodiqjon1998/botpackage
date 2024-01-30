@@ -100,6 +100,7 @@ function check($update)
     if (mysqli_num_rows($result) > 0) {
         if ($update['message']['text'] == "/work") {
             echo sendMessageReply("sendMessage", $params);
+            dump(sendMessageReply("sendMessage", $params));
         } elseif ($update["callback_query"]["data"] == "submit") {
             $sql = "INSERT INTO bot_users (user_id, first_name, username, is_bot, language_code)
             VALUES (
