@@ -10,5 +10,3 @@ $url = "https://api.telegram.org/bot" . API_KEY . "/sendMessage";
 
 echo check($update);
 
-header("location:users.php");
-
