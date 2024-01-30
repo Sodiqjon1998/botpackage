@@ -54,7 +54,7 @@ function check($update)
     global $conn;
 
     $text = $update['message']['text'];
-    $chat_id = $update['message']['chat']['id'];
+    $chat_id = $update['message']['from']['id'];
 
     $keyboard = [
         'inline_keyboard' => [
