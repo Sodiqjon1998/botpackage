@@ -75,9 +75,9 @@ function check($update)
 
     // Convert the keyboard markup array to JSON
     $replyMarkup = json_encode($keyboard);
-    if(isset($update['callback_query'])){
+    // if(isset($update['callback_query'])){
 
-    }
+    // }
     $params = [
         'chat_id' => $update['message']['from']['id'],
         'text' => "@" . $update['message']['from']['username'] . " " . $update['message']['from']['first_name'] . " " . $update['message']['from']['last_name'] . $update['callback_query']['data'],
