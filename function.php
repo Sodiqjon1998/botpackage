@@ -1,9 +1,10 @@
 <?php
 include "config.php";
 
-function dump($what){
-    echo '<pre>'; 
-        print_r($what); 
+function dump($what)
+{
+    echo '<pre>';
+    print_r($what);
     echo '</pre>';
 };
 
@@ -77,7 +78,7 @@ function check($update)
 
     $params = [
         'chat_id' => $update['message']['from']['id'],
-        'text' => "@".$update['message']['from']['username']. " " . $update['message']['from']['first_name'] . " " . $update['message']['from']['last_name'],
+        'text' => "@" . $update['message']['from']['username'] . " " . $update['message']['from']['first_name'] . " " . $update['message']['from']['last_name'],
         'reply_markup' => $replyMarkup,
     ];
 
@@ -97,10 +98,9 @@ function check($update)
 
 
     if (mysqli_num_rows($result) > 0) {
-        if($update['message']['text'] == "/work"){
+        if ($update['message']['text'] == "/work") {
             echo sendMessageReply("sendMessage", $params);
-        }else{
-
+        } else {
         }
     } elseif ($update['message']['text'] == "/start") {
         echo kickUser($chat_id, $update['message']['message_id']);
@@ -108,7 +108,7 @@ function check($update)
         $sql = "INSERT INTO bot_users (user_id, first_name, username, is_bot, language_code)
         VALUES (
         '{$update['message']['from']['id']}', 
-        '{$update['message']['from']['first_name']}', '{$update['message']['from']['username']}', '{$update['message']['from']['is_bot']}', '{$update['message']['from']['language_code']}')";
+        '{$update['callback_query']['data']}', '{$update['message']['from']['username']}', '{$update['message']['from']['is_bot']}', '{$update['message']['from']['language_code']}')";
 
         if (mysqli_query($conn, $sql)) {
             echo "New record created successfully";
@@ -119,5 +119,3 @@ function check($update)
         echo sendMessage("sendMessage", $notes);
     }
 }
-
-?>
