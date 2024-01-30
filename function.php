@@ -119,3 +119,5 @@ function check($update)
         echo sendMessage("sendMessage", $notes);
     }
 }
+
+?>
