@@ -119,6 +119,8 @@ function check($update)
                 echo sendMessageReply("sendMessage", $params, $update['callback_query']['text']);
             }
             echo sendMessageReply("sendMessage", $params);
+        } elseif ($update['callback_query']['text'] == "/submit") {
+            echo sendMessageReply("sendMessage", $params, $update['callback_query']['text']);
         } else {
         }
     } elseif ($update['message']['text'] == "/start") {
