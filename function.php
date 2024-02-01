@@ -89,9 +89,7 @@ function check($update)
         ]
     ];
 
-    $callback_text = $update = ['callback_query']['text'];
 
-    // Convert the keyboard markup array to JSON
     $replyMarkup = json_encode($keyboard);
 
     $params = [
@@ -116,7 +114,7 @@ function check($update)
 
 
     if (mysqli_num_rows($result) > 0) {
-        if ($update['callback_query']['text'] == "/Submit") {
+        if ($update['message']['text'] == "/work") {
             if (isset($update['callback_query'])) {
                 echo sendMessageReply("sendMessage", $params, $update['callback_query']['text']);
             }
