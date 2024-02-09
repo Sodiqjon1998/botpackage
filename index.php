@@ -17,7 +17,7 @@ if (isset($update['callback_query'])) {
     if($update['callback_query']['message']['text'] == "/submit")
     $data = http_build_query([
         'text' => 'Selected language: ' . $update['callback_query']['data'],
-        'chat_id' => $update['callback_query']['from']['id']
+        'chat_id' => "Salom"
     ]);
     file_get_contents($botAPI . "/sendMessage?{$data}");
 }
