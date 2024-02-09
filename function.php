@@ -115,11 +115,8 @@ function check($update)
 
     if (mysqli_num_rows($result) > 0) {
         if ($update['message']['text'] == "/work") {
-            if (isset($update['callback_query'])) {
-                echo sendMessageReply("sendMessage", $params, $update['callback_query']['text']);
-            }
             echo sendMessageReply("sendMessage", $params);
-        } elseif ($update['callback_query']['data'] == "/submit") {
+        } elseif ($update['callback_query']['text'] == "/submit") {
             echo sendMessageReply("sendMessage", $params, $update['callback_query']['data']);
         } else {
         }
