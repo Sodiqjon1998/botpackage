@@ -116,9 +116,6 @@ function check($update)
     if (mysqli_num_rows($result) > 0) {
         if ($update['message']['text'] == "/work") {
             echo sendMessageReply("sendMessage", $params);
-        } elseif ($update['callback_query']['text'] == "/submit") {
-            echo sendMessageReply("sendMessage", $params, $update['callback_query']['data']);
-        } else {
         }
     } elseif ($update['message']['text'] == "/start") {
         echo kickUser($chat_id, $update['message']['message_id']);
@@ -136,4 +133,6 @@ function check($update)
     } else {
         echo sendMessage("sendMessage", $notes);
     }
+
+
 }

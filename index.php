@@ -10,3 +10,14 @@ $url = "https://api.telegram.org/bot" . API_KEY . "/sendMessage";
 
 check($update);
 
+
+if (isset($update['callback_query'])) {
+
+    // Reply with callback_query data
+    $data = http_build_query([
+        'text' => 'Selected language: ' . $update['callback_query']['data'],
+        'chat_id' => $update['callback_query']['from']['id']
+    ]);
+    file_get_contents($botAPI . "/sendMessage?{$data}");
+}
+
