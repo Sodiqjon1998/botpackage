@@ -1,12 +1,7 @@
 <?php
 include "config.php";
 
-function dump($what)
-{
-    echo '<pre>';
-    print_r($what);
-    echo '</pre>';
-};
+
 
 function sendMessage($method = "getMe", $params = [])
 {
@@ -18,8 +13,7 @@ function sendMessage($method = "getMe", $params = [])
         CURLOPT_POSTFIELDS => $params,
         CURLOPT_HTTPHEADER => ['Content-Type:multipart/form-data'],
     ]);
-    echo "<pre>";
-    print_r($curl);
+  
     $res = curl_exec($curl);
     curl_close($curl);
     return !curl_error($curl) ? json_decode($res, true) : false;
@@ -52,8 +46,7 @@ function sendMessageReply1($method = "getMe", $params = [], $data)
         CURLOPT_POSTFIELDS => $params,
         CURLOPT_HTTPHEADER => ['Content-Type:multipart/form-data'],
     ]);
-    echo "<pre>";
-    print_r($curl);
+ 
     $res = curl_exec($curl);
     curl_close($curl);
     return !curl_error($curl) ? json_decode($res, true) : false;
@@ -119,8 +112,7 @@ function check($update)
 
     if (mysqli_num_rows($result) > 0) {
         if ($update['message']['text'] == "/work") {
-            echo "<pre>";
-            print_r(sendMessageReply("sendMessage", $params));
+            sendMessageReply("sendMessage", $params);
         }
     } elseif ($update['message']['text'] == "/start") {
         echo kickUser($chat_id, $update['message']['message_id']);
